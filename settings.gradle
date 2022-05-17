@@ -1,0 +1,13 @@
+pluginManagement {
+    includeBuild './plugin'
+}
+
+rootProject.name = 'protolock-gradle-plugin-test'
+
+
+include 'simple-test', 'java-proto-test', 'simple-test-with-seeral-proto'
+
+project(':simple-test').projectDir = file 'samples/simple-test'
+project(':java-proto-test').projectDir = file 'samples/java-proto-test'
+project(':simple-test-with-seeral-proto').projectDir = file 'samples/simple-test-with-seeral-proto'
+

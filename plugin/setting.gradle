@@ -1,0 +1,7 @@
+pluginManagement {
+    repositories {
+//        gradlePluginPortal()
+        google()
+    }
+}
+rootProject.name = 'protolock-gradle-plugin'

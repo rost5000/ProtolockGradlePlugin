@@ -1,0 +1,17 @@
+
+repositories {
+    mavenCentral()
+    gradlePluginPortal()
+    google()
+}
+
+subprojects{
+    apply plugin: 'java'
+}
+
+
+
+group 'ru.rost5000.protolock.gradle.samples'
+version '1.0'
+
+

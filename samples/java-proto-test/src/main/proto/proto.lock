@@ -1,0 +1,32 @@
+{
+  "definitions": [
+    {
+      "protopath": "sample.proto",
+      "def": {
+        "messages": [
+          {
+            "name": "Simple",
+            "fields": [
+              {
+                "id": 1,
+                "name": "query",
+                "type": "string"
+              },
+              {
+                "id": 2,
+                "name": "page_number",
+                "type": "int32"
+              },
+              {
+                "id": 3,
+                "name": "result_per_page",
+                "type": "int32"
+              }
+            ]
+          }
+        ],
+        "package": {}
+      }
+    }
+  ]
+}

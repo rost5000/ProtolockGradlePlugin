@@ -1,0 +1,12 @@
+plugins {
+    id 'ru.rost5000.protolock.gradle'
+}
+
+protolock {
+    location{
+        defaultLocation {
+            setProtorootDir("$projectDir/src/main/proto")
+            lockDir = "$projectDir/src/main/proto"
+        }
+    }
+}

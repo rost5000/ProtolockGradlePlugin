@@ -1,0 +1,59 @@
+plugins {
+    id 'java-library'
+    id 'maven-publish'
+    id 'ru.rost5000.protolock.gradle'
+    id "com.google.protobuf" version "0.8.17"
+}
+
+
+group = "ru.example.api.proto"
+version = System.getenv("BUILD_VERSION") != null ? System.getenv("BUILD_VERSION") : "0.0.0-SNAPSHOT"
+
+compileJava.options.encoding = "UTF-8"
+compileTestJava.options.encoding = "UTF-8"
+
+ext {
+    protobufJavaVersion = "3.17.3"
+    protoGoogleCommons = "2.3.2"
+    grpcVersion = "1.39.0"
+}
+
+dependencies {
+    implementation(
+            "com.google.protobuf:protobuf-java:$protobufJavaVersion",
+            "com.google.api.grpc:proto-google-common-protos:$protoGoogleCommons",
+
+            "io.grpc:protoc-gen-grpc-java:$grpcVersion",
+            "io.grpc:grpc-netty-shaded:$grpcVersion",
+            "io.grpc:grpc-protobuf:$grpcVersion",
+            "io.grpc:grpc-stub:$grpcVersion"
+    )
+}
+
+repositories {
+    mavenCentral()
+    gradlePluginPortal()
+    google()
+}
+
+protobuf {
+    protoc {
+        artifact = 'com.google.protobuf:protoc:3.0.0'
+    }
+
+    plugins {
+        grpc {
+            artifact = "io.grpc:protoc-gen-grpc-java:$grpcVersion"
+        }
+    }
+    generateProtoTasks {
+        all().each { task ->
+            {
+                task.plugins {
+                    grpc {}
+                }
+            }
+
+        }
+    }
+}
