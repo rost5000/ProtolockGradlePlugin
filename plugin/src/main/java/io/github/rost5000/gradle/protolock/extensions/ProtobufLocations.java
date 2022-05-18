@@ -1,4 +1,4 @@
-package ru.rost5000.protolock.gradle.extensions;
+package io.github.rost5000.gradle.protolock.extensions;
 
 import lombok.Data;
 import lombok.NonNull;

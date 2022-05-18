@@ -1,14 +1,14 @@
-package ru.rost5000.protolock.gradle;
+package io.github.rost5000.gradle.protolock;
 
+import io.github.rost5000.gradle.protolock.extensions.ProtobufLocations;
+import io.github.rost5000.gradle.protolock.extensions.ProtolockPluginExtension;
+import io.github.rost5000.gradle.protolock.service.ProtolockService;
+import io.github.rost5000.gradle.protolock.service.ProtolockServiceDecorator;
 import org.gradle.api.Action;
 import org.gradle.api.NamedDomainObjectContainer;
 import org.gradle.api.Plugin;
 import org.gradle.api.Project;
 import org.gradle.api.Task;
-import ru.rost5000.protolock.gradle.extensions.ProtobufLocations;
-import ru.rost5000.protolock.gradle.extensions.ProtolockPluginExtension;
-import ru.rost5000.protolock.gradle.service.ProtolockService;
-import ru.rost5000.protolock.gradle.service.ProtolockServiceDecorator;
 
 import java.io.File;
 

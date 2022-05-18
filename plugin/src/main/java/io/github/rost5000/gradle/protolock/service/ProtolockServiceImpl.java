@@ -1,9 +1,9 @@
-package ru.rost5000.protolock.gradle.service;
+package io.github.rost5000.gradle.protolock.service;
 
+import io.github.rost5000.gradle.protolock.extensions.ProtobufLocations;
+import io.github.rost5000.gradle.protolock.utils.ProtolockRunner;
 import lombok.NonNull;
 import org.gradle.api.GradleException;
-import ru.rost5000.protolock.gradle.extensions.ProtobufLocations;
-import ru.rost5000.protolock.gradle.utils.ProtolockRunner;
 
 import java.io.File;
 import java.util.ArrayList;

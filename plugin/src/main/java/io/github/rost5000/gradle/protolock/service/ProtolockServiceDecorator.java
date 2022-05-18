@@ -1,12 +1,12 @@
-package ru.rost5000.protolock.gradle.service;
+package io.github.rost5000.gradle.protolock.service;
 
+import io.github.rost5000.gradle.protolock.extensions.ExecutableLocator;
+import io.github.rost5000.gradle.protolock.extensions.ProtobufLocations;
+import io.github.rost5000.gradle.protolock.extensions.ProtolockPluginExtension;
+import io.github.rost5000.gradle.protolock.utils.ProtolockRunner;
 import lombok.AccessLevel;
 import lombok.NonNull;
 import lombok.experimental.FieldDefaults;
-import ru.rost5000.protolock.gradle.extensions.ExecutableLocator;
-import ru.rost5000.protolock.gradle.extensions.ProtobufLocations;
-import ru.rost5000.protolock.gradle.extensions.ProtolockPluginExtension;
-import ru.rost5000.protolock.gradle.utils.ProtolockRunner;
 
 import java.util.Collection;
 import java.util.stream.Collectors;

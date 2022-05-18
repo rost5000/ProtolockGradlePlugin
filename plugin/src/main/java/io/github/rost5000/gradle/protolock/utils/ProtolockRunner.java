@@ -1,7 +1,7 @@
-package ru.rost5000.protolock.gradle.utils;
+package io.github.rost5000.gradle.protolock.utils;
 
+import io.github.rost5000.gradle.protolock.extensions.ExecutableLocator;
 import org.gradle.api.GradleException;
-import ru.rost5000.protolock.gradle.extensions.ExecutableLocator;
 
 import java.io.BufferedReader;
 import java.io.File;

@@ -1,4 +1,4 @@
-package ru.rost5000.protolock.gradle.service;
+package io.github.rost5000.gradle.protolock.service;
 
 public interface ProtolockService {
     public void init();

@@ -1,6 +1,7 @@
-package ru.rost5000.protolock.gradle.utils;
+package io.github.rost5000.gradle.protolock.utils;
 
-import ru.rost5000.protolock.gradle.extensions.ExecutableLocator;
+
+import io.github.rost5000.gradle.protolock.extensions.ExecutableLocator;
 
 import java.util.Objects;
 

@@ -1,5 +1,5 @@
 plugins {
-    id 'ru.rost5000.protolock.gradle'
+    id 'io.github.rost5000.gradle.protolock'
 }
 
 protolock {

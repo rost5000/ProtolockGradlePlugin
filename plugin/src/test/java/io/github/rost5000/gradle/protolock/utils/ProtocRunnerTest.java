@@ -1,8 +1,8 @@
-package ru.rost5000.protolock.gradle.utils;
+package io.github.rost5000.gradle.protolock.utils;
 
+import io.github.rost5000.gradle.protolock.extensions.ExecutableLocator;
 import org.gradle.api.GradleException;
 import org.junit.jupiter.api.BeforeEach;
-import ru.rost5000.protolock.gradle.extensions.ExecutableLocator;
 
 import static org.gradle.internal.impldep.org.junit.Assert.assertThrows;
 import static org.gradle.internal.impldep.org.junit.Assert.assertTrue;

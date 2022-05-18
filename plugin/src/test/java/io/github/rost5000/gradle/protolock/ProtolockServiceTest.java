@@ -1,11 +1,12 @@
-package ru.rost5000.protolock.gradle;
+package io.github.rost5000.gradle.protolock;
 
+import io.github.rost5000.gradle.protolock.extensions.ExecutableLocator;
+import io.github.rost5000.gradle.protolock.extensions.ProtobufLocations;
+import io.github.rost5000.gradle.protolock.service.ProtolockServiceImpl;
+import io.github.rost5000.gradle.protolock.utils.ProtolockLoader;
+import io.github.rost5000.gradle.protolock.utils.ProtolockRunner;
 import org.gradle.api.GradleException;
-import ru.rost5000.protolock.gradle.extensions.ExecutableLocator;
-import ru.rost5000.protolock.gradle.extensions.ProtobufLocations;
-import ru.rost5000.protolock.gradle.service.ProtolockServiceImpl;
-import ru.rost5000.protolock.gradle.utils.ProtolockLoader;
-import ru.rost5000.protolock.gradle.utils.ProtolockRunner;
+
 
 import java.io.BufferedReader;
 import java.io.File;
