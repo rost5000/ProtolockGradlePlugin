@@ -13,7 +13,7 @@ public class ProtolockPluginExtension {
         action.execute(this.getLocation());
     }
 
-    public void protoc(Action<? super ExecutableLocator> action) {
+    public void protolock(Action<? super ExecutableLocator> action) {
         action.execute(this.getProtolock());
     }
 }

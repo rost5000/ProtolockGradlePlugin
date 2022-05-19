@@ -3,6 +3,9 @@ plugins {
 }
 
 protolock {
+    protolock {
+        artifact = "org.example:protolock:3.20.1"
+    }
     location{
         defaultLocation {
             setProtorootDir("$projectDir/src/main/proto")

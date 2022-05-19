@@ -36,6 +36,12 @@ repositories {
     google()
 }
 
+protolock {
+    protolock {
+        artifact = "org.example:protolock:3.20.1"
+    }
+}
+
 protobuf {
     protoc {
         artifact = 'com.google.protobuf:protoc:3.0.0'

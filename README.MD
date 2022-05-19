@@ -56,6 +56,20 @@ protolock {
 }
 ```
 
+You can specify the dependency of protolock by:
+
+```groovy
+protolock {
+    protolock {
+        artifact = "org.example:protolock:3.20.1"
+    }
+}
+```
+Before [the issue](https://github.com/nilslice/protolock/issues/143) is resolved, you can publish artifacts of protolock manually to 
+your maven local repository using [this repo](https://github.com/rost5000/protoloc-gradle-publisher).
+
+```groovy
+
 if you want do not fail your build if protolock found some errors, you can configure the plugin by:
 
 ```groovy
