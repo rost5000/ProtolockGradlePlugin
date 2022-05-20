@@ -40,7 +40,6 @@ public class ProtolockRunner {
         } catch (InterruptedException e) {
             throw new GradleException("Interrupted process: " + e.getMessage(), e);
         }
-        StringBuffer stderr = new StringBuffer();
 
         if (result.exitValue() == 0) {
             String output = new BufferedReader(new InputStreamReader(result.getInputStream()))

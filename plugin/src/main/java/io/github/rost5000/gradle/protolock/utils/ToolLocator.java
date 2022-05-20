@@ -1,5 +1,6 @@
 package io.github.rost5000.gradle.protolock.utils;
 
+import com.google.gradle.osdetector.OsDetector;
 import io.github.rost5000.gradle.protolock.extensions.ExecutableLocator;
 import lombok.AccessLevel;
 import lombok.Data;
@@ -52,11 +53,21 @@ public class ToolLocator {
     }
 
     private Map<String, String> getNotation(DependencyInfo dependencyInfo) {
+        OsDetector osDetector = project.getExtensions().getByType(OsDetector.class);
+        String osProperty = osDetector.getOs(), os;
+        if (osProperty.contains("win")) {
+            os = "win";
+        } else if (osProperty.contains("linux")) {
+            os = "linux";
+        } else {
+            throw new RuntimeException("Unsupported OS: " + osProperty);
+        }
+
         Map<String, String> notation = new HashMap<>();
         notation.put("group", dependencyInfo.getGroup());
         notation.put("name", dependencyInfo.getArtifact());
         notation.put("version", dependencyInfo.getVersion());
-        notation.put("classifier", dependencyInfo.getClassifier());
+        notation.put("classifier", os + "-" + osDetector.getArch());
         notation.put("ext", dependencyInfo.getExtension());
         return notation;
     }

@@ -1,5 +1,6 @@
 package io.github.rost5000.gradle.protolock;
 
+import com.google.gradle.osdetector.OsDetectorPlugin;
 import io.github.rost5000.gradle.protolock.extensions.ExecutableLocator;
 import io.github.rost5000.gradle.protolock.extensions.ProtobufLocations;
 import io.github.rost5000.gradle.protolock.extensions.ProtolockPluginExtension;
@@ -13,6 +14,7 @@ import org.gradle.api.Project;
 import org.gradle.api.Task;
 
 import java.io.File;
+import java.util.Collections;
 
 public class ProtolockPlugin implements Plugin<Project> {
     private static final String GRADLE_PROTOC_STATUS_NAME = "protolockStatus";
@@ -23,6 +25,8 @@ public class ProtolockPlugin implements Plugin<Project> {
 
     @Override
     public void apply(Project project) {
+        project.apply(Collections.singletonMap("plugin", OsDetectorPlugin.class));
+
         ProtolockPluginExtension extension = project.getExtensions()
                 .create("protolock", ProtolockPluginExtension.class);
         NamedDomainObjectContainer<ProtobufLocations> container = project.container(ProtobufLocations.class);
