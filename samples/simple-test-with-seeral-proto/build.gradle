@@ -4,7 +4,7 @@ plugins {
 
 protolock {
     protolock {
-        artifact = "org.example:protolock:3.20.1"
+        artifact = "io.github.rost5000.protolock:protolock-binaries:0.17.0"
     }
     location{
         firstLocation {

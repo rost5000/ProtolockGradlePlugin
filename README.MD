@@ -10,7 +10,7 @@ You can check more examples in the [repository](./samples)
 2. Add the plugin to your `build.gradle` file
 ```groovy
 plugins {
-    id 'ru.rost5000.protolock.gradle' 
+    id 'io.github.rost5000.gradle.protolock' 
 }
 ```
 ## How to configure
@@ -56,19 +56,15 @@ protolock {
 }
 ```
 
-You can specify the dependency of protolock by:
+You can specify the dependency of protolock by for maven central repository:
 
 ```groovy
 protolock {
     protolock {
-        artifact = "org.example:protolock:3.20.1"
+        artifact = "io.github.rost5000.protolock:protolock-binaries:0.17.0"
     }
 }
 ```
-Before [the issue](https://github.com/nilslice/protolock/issues/143) is resolved, you can publish artifacts of protolock manually to 
-your maven local repository using [this repo](https://github.com/rost5000/protoloc-gradle-publisher).
-
-```groovy
 
 if you want do not fail your build if protolock found some errors, you can configure the plugin by:
 
@@ -95,3 +91,4 @@ in your project will be added automatically.
 
 1. [plugin](./plugin) directory contains plugin source code.
 2. [samples](./samples) directory contains samples for usage plugin.
+3. [protolock-publisher](./protolock-publisher) directory for publishing binaries to Maven Central repository

@@ -1,0 +1,11 @@
+[versions]
+lombok = { require = "1.18.32" }
+google-gradle-osdetector = "1.7.0"
+jypiter = "5.8.2"
+
+[libraries]
+lombok = { module = "org.projectlombok:lombok", version.ref = "lombok" }
+google-gradle-osdetector = { module = "com.google.gradle:osdetector-gradle-plugin", version.ref = "google-gradle-osdetector" }
+jypitert-engine = {module = "org.junit.jupiter:junit-jupiter-engine", version.ref = "jypiter"}
+jypiter-api = {module = "org.junit.jupiter:junit-jupiter-api", version.ref = "jypiter"}
+

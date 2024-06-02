@@ -180,3 +180,4 @@ gradle-app.setting
 .classpath
 
 # End of https://www.toptal.com/developers/gitignore/api/intellij+all,gradle,eclipse
+/protolock-publisher/private.pgp

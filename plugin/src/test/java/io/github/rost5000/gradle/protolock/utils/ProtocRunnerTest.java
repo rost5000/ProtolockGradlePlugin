@@ -14,7 +14,7 @@ class ProtocRunnerTest {
     @BeforeEach
     void initialize() {
         protocRunner = new ProtolockRunner(
-                new ExecutableLocator("protoc") {{
+                new ExecutableLocator("protolock") {{
                     setPath(loader.getProtolockPath());
                 }}
         );
@@ -38,6 +38,4 @@ class ProtocRunnerTest {
     void runCommandWithException() {
         assertThrows(GradleException.class, () -> protocRunner.run(new String[]{"commit"}));
     }
-
-
 }

@@ -1,0 +1,174 @@
+plugins {
+    id 'maven-publish'
+    id 'org.jreleaser' version '1.12.0'
+    id("de.undercouch.download") version "5.6.0"
+}
+
+version '0.17.0-SNAPSHOT1'
+ext {
+    timeVersion = '20231219T195034Z'
+}
+
+tasks.register("downloadExecutables", Download) {
+    src([
+            "https://github.com/nilslice/protolock/releases/download/v${version}/protolock.${timeVersion}.darwin-amd64.tgz",
+            "https://github.com/nilslice/protolock/releases/download/v${version}/protolock.${timeVersion}.darwin-arm64.tgz",
+            "https://github.com/nilslice/protolock/releases/download/v${version}/protolock.${timeVersion}.linux-arm64.tgz",
+            "https://github.com/nilslice/protolock/releases/download/v${version}/protolock.${timeVersion}.linux-amd64.tgz",
+            "https://github.com/nilslice/protolock/releases/download/v${version}/protolock.${timeVersion}.windows-amd64.tgz"
+    ])
+    dest layout.buildDirectory.dir("executable-files")
+}
+
+tasks.register("unpackWindowsAmd", Copy) {
+    from tarTree(resources.gzip("build/executable-files/protolock.${timeVersion}.windows-amd64.tgz"))
+    into layout.buildDirectory.dir("executable-files-unpacked")
+    include "protolock*"
+    rename { ignored -> "protolock-windows-amd64.exe" }
+}
+
+tasks.register("unpackLinuxAmd", Copy) {
+    from tarTree(resources.gzip("build/executable-files/protolock.${timeVersion}.linux-amd64.tgz"))
+    into layout.buildDirectory.dir("executable-files-unpacked")
+    include "protolock*"
+    rename { ignored -> "protolock-linux-amd64.exe" }
+}
+
+tasks.register("unpackLinuxArm", Copy) {
+    from tarTree(resources.gzip("build/executable-files/protolock.${timeVersion}.linux-arm64.tgz"))
+    into layout.buildDirectory.dir("executable-files-unpacked")
+    include "protolock*"
+    rename { ignored -> "protolock-linux-arm64.exe" }
+}
+
+tasks.register("unpackDarwinAmd", Copy) {
+    from tarTree(resources.gzip("build/executable-files/protolock.${timeVersion}.linux-amd64.tgz"))
+    into layout.buildDirectory.dir("executable-files-unpacked")
+    include "protolock*"
+    rename { ignored -> "protolock-darwin-amd64.exe" }
+}
+
+tasks.register("unpackDarwinArm", Copy) {
+    from tarTree(resources.gzip("build/executable-files/protolock.${timeVersion}.linux-arm64.tgz"))
+    into layout.buildDirectory.dir("executable-files-unpacked")
+    include "protolock*"
+    rename { ignored -> "protolock-darwin-arm64.exe" }
+}
+
+tasks.unpackDarwinArm.dependsOn tasks.downloadExecutables
+tasks.unpackDarwinAmd.dependsOn tasks.downloadExecutables
+tasks.unpackLinuxArm.dependsOn tasks.downloadExecutables
+tasks.unpackLinuxAmd.dependsOn tasks.downloadExecutables
+tasks.unpackWindowsAmd.dependsOn tasks.downloadExecutables
+
+
+configurations {
+    protoc_publication
+}
+
+def exeArtifact = artifacts.add('protoc_publication', file('build/executable-files-unpacked/protolock-windows-amd64.exe')) {
+    type 'amd64'
+    name 'protolock'
+    classifier 'win-amd64'
+    extension 'exe'
+}
+def linuxAmdArtifact = artifacts.add('protoc_publication', file('build/executable-files-unpacked/protolock-linux-amd64.exe')) {
+    type 'amd64'
+    name 'protolock'
+    classifier 'linux-amd64'
+    extension 'exe'
+}
+def linuxArmArtifact = artifacts.add('protoc_publication', file('build/executable-files-unpacked/protolock-linux-arm64.exe')) {
+    type 'arm64'
+    name 'protolock'
+    classifier 'linux-arm64'
+    extension 'exe'
+}
+
+def darwinArmArtifact = artifacts.add('protoc_publication', file('build/executable-files-unpacked/protolock-darwin-arm64.exe')) {
+    type 'arm64'
+    name 'protolock'
+    classifier 'darwin-arm64'
+    extension 'exe'
+}
+
+def darwinAmdArtifact = artifacts.add('protoc_publication', file('build/executable-files-unpacked/protolock-darwin-amd64.exe')) {
+    type 'amd64'
+    name 'protolock'
+    classifier 'darwin-amd64'
+    extension 'exe'
+}
+
+tasks.withType(GenerateMavenPom).configureEach{
+    dependsOn tasks.unpackDarwinArm
+    dependsOn tasks.unpackDarwinAmd
+    dependsOn tasks.unpackLinuxArm
+    dependsOn tasks.unpackLinuxAmd
+    dependsOn tasks.unpackWindowsAmd
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId = 'io.github.rost5000.protolock'
+            artifactId = 'protolock-binaries'
+
+            artifact exeArtifact
+            artifact linuxAmdArtifact
+            artifact linuxArmArtifact
+            artifact darwinArmArtifact
+            artifact darwinAmdArtifact
+
+            pom {
+                name = 'protolock-binaries'
+                description = 'Protolock binaries, published in Maven Central repository.'
+                url = 'https://github.com/rost5000/ProtolockGradlePlugin'
+                inceptionYear = '2024'
+                licenses {
+                    license {
+                        name = 'Apache-2.0'
+                        url = 'https://spdx.org/licenses/Apache-2.0.html'
+                    }
+                }
+                developers {
+                    developer {
+                        id = 'rost5000'
+                        name = 'Rostislav Shaniiazov'
+                        email = 'rost.26@mail.ru'
+                    }
+                }
+                scm {
+                    connection = 'scm:git:https://github.com/rost5000/ProtolockGradlePlugin.git'
+                    developerConnection = 'scm:git:ssh://github.com/rost5000/ProtolockGradlePlugin.git'
+                    url = 'https://github.com/rost5000/ProtolockGradlePlugin'
+                }
+            }
+        }
+    }
+
+    repositories {
+        maven {
+            url = layout.buildDirectory.dir('staging-deploy')
+        }
+    }
+}
+
+jreleaser {
+    gitRootSearch = true
+    signing {
+        active = 'ALWAYS'
+        armored = true
+    }
+    deploy {
+        maven {
+            mavenCentral {
+                sonatype {
+                    sign = true
+                    active = 'ALWAYS'
+                    url = 'https://central.sonatype.com/api/v1/publisher'
+                    stagingRepository('build/staging-deploy')
+                }
+            }
+        }
+    }
+}

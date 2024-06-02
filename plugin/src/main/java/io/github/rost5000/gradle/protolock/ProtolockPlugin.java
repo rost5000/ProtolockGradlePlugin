@@ -17,9 +17,11 @@ import java.io.File;
 import java.util.Collections;
 
 public class ProtolockPlugin implements Plugin<Project> {
+    private static final String DEFAULT_PROTO_FILES_LOCATION = File.separator + "src" + File.separator + "main" + File.separator + "proto";
     private static final String GRADLE_PROTOC_STATUS_NAME = "protolockStatus";
     private static final String GRADLE_PROTOC_COMMIT_NAME = "protolockCommit";
     private static final String GRADLE_PROTOC_INIT_NAME = "protolockInit";
+
     private ToolLocator toolLocator;
     private ExecutableLocator protocLocation;
 
@@ -54,9 +56,9 @@ public class ProtolockPlugin implements Plugin<Project> {
             container.register(
                     "defProto",
                     addLocation(
-                            new File(project.getProjectDir().getAbsolutePath() +
-                                    File.separator +
-                                    "src" + File.separator + "main" + File.separator + "proto"),
+                            new File(
+                                    project.getProjectDir().getAbsolutePath() + DEFAULT_PROTO_FILES_LOCATION
+                            ),
                             container
                     )
             );
