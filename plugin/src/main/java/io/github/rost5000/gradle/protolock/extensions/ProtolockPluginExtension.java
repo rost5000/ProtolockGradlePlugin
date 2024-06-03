@@ -6,7 +6,7 @@ import org.gradle.api.NamedDomainObjectContainer;
 
 @Data
 public class ProtolockPluginExtension {
-    private ExecutableLocator protolock = new ExecutableLocator("protoc");
+    private ExecutableLocator protolock = new ExecutableLocator("protolock");
     private NamedDomainObjectContainer<ProtobufLocations> location;
 
     public void location(Action<? super NamedDomainObjectContainer<ProtobufLocations>> action) {
